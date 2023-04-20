@@ -1,19 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {NativeRouter, Route, Routes} from 'react-router-native';
+import {HomeScreen} from './screens/HomeScreen';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -21,16 +9,14 @@ function App(): JSX.Element {
   const backgroundStyle = 'bg-neutral-300 dark:bg-slate-900';
 
   return (
-    <SafeAreaView className={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        className={backgroundStyle}>
-        <View className="bg-white dark:bg-black">
-          <Text>Test</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NativeRouter>
+      <SafeAreaView className={backgroundStyle}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+        </Routes>
+      </SafeAreaView>
+    </NativeRouter>
   );
 }
 
