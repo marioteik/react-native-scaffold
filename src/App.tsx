@@ -1,7 +1,8 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {NativeRouter, Route, Routes} from 'react-router-native';
-import {HomeScreen} from './screens/HomeScreen';
+import {HomeScreen} from '@screens/HomeScreen';
+import {GlobalProvider} from '@context/global/global.context';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -10,12 +11,14 @@ function App(): JSX.Element {
 
   return (
     <NativeRouter>
-      <SafeAreaView className={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <Routes>
-          <Route path="/" element={<HomeScreen />} />
-        </Routes>
-      </SafeAreaView>
+      <GlobalProvider>
+        <SafeAreaView className={backgroundStyle}>
+          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+          </Routes>
+        </SafeAreaView>
+      </GlobalProvider>
     </NativeRouter>
   );
 }
